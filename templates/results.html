@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <style>
+        /* CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 40px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        li:hover {
+            transform: translateY(-5px);
+        }
+
+        img {
+            width: 70%;
+            height: 50%;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .product-details {
+            padding: 20px;
+        }
+
+        p {
+            margin: 0;
+            margin-bottom: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #4CAF50;
+            transition: color 0.3s ease-in-out;
+        }
+
+        a:hover {
+            color: #2e8b57;
+        }
+    </style>
+</head>
+<body>
+    <h1>Search Results</h1>
+    <div class="container">
+        <ul>
+            {% for product in products %}
+            <li>
+                <img src="{{ product.image_url }}" alt="{{ product.name }}">
+                <div class="product-details">
+                    <p><strong>Name:</strong> {{ product.name }}</p>
+                    <p><strong>Price:</strong> {{ product.cost }}</p>
+                    <p><a href="{{ url_for('price_history', asin=product.asin) }}">View Price History</a></p>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <footer style="text-align: center; background-color: #007bff; color: #fff; padding: 10px 0;">
+        <p>&copy; 2024 Spedify. All rights reserved.</p>
+    </footer>
+</body>
+</html>
